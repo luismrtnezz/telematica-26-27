@@ -75,6 +75,20 @@ public class Matriz {
         return a.suma(b);
     }
 
+    /**
+     * Devuelve la matriz traspuesta de esta matriz.
+     * @return matriz traspuesta (filas y columnas intercambiadas).
+     */
+    public Matriz traspuesta() {
+        double[][] resultado = new double[columnas][filas];
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                resultado[j][i] = datos[i][j];
+            }
+        }
+        return new Matriz(resultado);
+    }
+
     @Override
     public String toString() {
         StringBuilder resultado = new StringBuilder();
