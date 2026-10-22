@@ -44,6 +44,24 @@ public class Matriz {
         return datos[fila][columna];
     }
 
+    /**
+     * Suma esta matriz con otra.
+     * @param otra matriz a sumar.
+     * @return matriz suma, o null si otra es null o las dimensiones no coinciden.
+     */
+    public Matriz suma(Matriz otra) {
+        if (otra == null || otra.filas != this.filas || otra.columnas != this.columnas) {
+            return null;
+        }
+        double[][] resultado = new double[filas][columnas];
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                resultado[i][j] = this.datos[i][j] + otra.datos[i][j];
+            }
+        }
+        return new Matriz(resultado);
+    }
+
     @Override
     public String toString() {
         StringBuilder resultado = new StringBuilder();

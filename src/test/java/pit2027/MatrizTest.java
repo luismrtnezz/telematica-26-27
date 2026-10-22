@@ -2,6 +2,9 @@ package pit2027;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 import org.junit.Test;
 
 public class MatrizTest {
@@ -54,5 +57,32 @@ public class MatrizTest {
     public void constructorMatrizConFilasNull() {
         double[][] datos = { { 1.0, 2.0 }, null };
         new Matriz(datos);
+    }
+    
+    @Test
+    public void sumaMatricesDeMismaDimension() {
+        double[][] datosA = { { 1.0, 2.0, 3.0 }, { 4.0, 5.0, 6.0 } };
+        double[][] datosB = { { 10.0, 20.0, 30.0 }, { 40.0, 50.0, 60.0 } };
+        Matriz a = new Matriz(datosA);
+        Matriz b = new Matriz(datosB);
+        Matriz suma = a.suma(b);
+
+        assertNotNull(suma);
+        assertArrayEquals(new int[] { 2, 3 }, suma.getDimension());
+        assertEquals(11.0, suma.getElemento(0, 0), 1e-9);
+        assertEquals(66.0, suma.getElemento(1, 2), 1e-9);
+    }
+
+    @Test
+    public void sumaConNullDevuelveNull() {
+        Matriz m = new Matriz(new double[][] { { 1.0 } });
+        assertNull(m.suma(null));
+    }
+
+    @Test
+    public void sumaConDimensionDiferenteDevuelveNull() {
+        Matriz a = new Matriz(new double[][] { { 1.0, 2.0 } });
+        Matriz b = new Matriz(new double[][] { { 1.0 } });
+        assertNull(a.suma(b));
     }
 }
