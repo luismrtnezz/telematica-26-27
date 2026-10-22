@@ -89,6 +89,18 @@ public class Matriz {
         return new Matriz(resultado);
     }
 
+    /**
+     * Devuelve la matriz traspuesta de la matriz dada (versión estática).
+     * @param matriz matriz de entrada.
+     * @return matriz traspuesta, o null si matriz es null.
+     */
+    public static Matriz traspuesta(Matriz matriz) {
+        if (matriz == null) {
+            return null;
+        }
+        return matriz.traspuesta();
+    }
+
     @Override
     public String toString() {
         StringBuilder resultado = new StringBuilder();

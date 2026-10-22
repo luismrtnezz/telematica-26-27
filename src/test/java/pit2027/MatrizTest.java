@@ -144,4 +144,25 @@ public class MatrizTest {
         assertEquals(3.0, m.getElemento(1, 0), 1e-9);
         assertEquals(4.0, m.getElemento(1, 1), 1e-9);
     }
+
+        @Test
+    public void traspuestaEstaticaMatrizRectangular() {
+        double[][] datos = { { 1.0, 2.0 }, { 3.0, 4.0 }, { 5.0, 6.0 } };
+        Matriz m = new Matriz(datos);
+        Matriz t = Matriz.traspuesta(m);
+
+        assertNotNull(t);
+        assertArrayEquals(new int[] { 2, 3 }, t.getDimension());
+        assertEquals(1.0, t.getElemento(0, 0), 1e-9);
+        assertEquals(3.0, t.getElemento(0, 1), 1e-9);
+        assertEquals(5.0, t.getElemento(0, 2), 1e-9);
+        assertEquals(2.0, t.getElemento(1, 0), 1e-9);
+        assertEquals(4.0, t.getElemento(1, 1), 1e-9);
+        assertEquals(6.0, t.getElemento(1, 2), 1e-9);
+    }
+
+    @Test
+    public void traspuestaEstaticaNullDevuelveNull() {
+        assertNull(Matriz.traspuesta(null));
+    }
 }
