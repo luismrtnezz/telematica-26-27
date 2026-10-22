@@ -62,6 +62,19 @@ public class Matriz {
         return new Matriz(resultado);
     }
 
+    /**
+     * Suma dos matrices (versión estática).
+     * @param a primera matriz.
+     * @param b segunda matriz.
+     * @return matriz suma, o null si alguna es null o las dimensiones no coinciden.
+     */
+    public static Matriz suma(Matriz a, Matriz b) {
+        if (a == null || b == null) {
+            return null;
+        }
+        return a.suma(b);
+    }
+
     @Override
     public String toString() {
         StringBuilder resultado = new StringBuilder();

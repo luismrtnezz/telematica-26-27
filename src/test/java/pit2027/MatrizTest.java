@@ -58,7 +58,7 @@ public class MatrizTest {
         double[][] datos = { { 1.0, 2.0 }, null };
         new Matriz(datos);
     }
-    
+
     @Test
     public void sumaMatricesDeMismaDimension() {
         double[][] datosA = { { 1.0, 2.0, 3.0 }, { 4.0, 5.0, 6.0 } };
@@ -84,5 +84,35 @@ public class MatrizTest {
         Matriz a = new Matriz(new double[][] { { 1.0, 2.0 } });
         Matriz b = new Matriz(new double[][] { { 1.0 } });
         assertNull(a.suma(b));
+    }
+
+        @Test
+    public void sumaEstaticaMatricesDeMismaDimension() {
+        double[][] datosA = { { 1.0, 2.0 }, { 3.0, 4.0 } };
+        double[][] datosB = { { 0.5, 1.5 }, { -3.0, 6.0 } };
+        Matriz a = new Matriz(datosA);
+        Matriz b = new Matriz(datosB);
+        Matriz suma = Matriz.suma(a, b);
+
+        assertNotNull(suma);
+        assertArrayEquals(new int[] { 2, 2 }, suma.getDimension());
+        assertEquals(1.5, suma.getElemento(0, 0), 1e-9);
+        assertEquals(3.5, suma.getElemento(0, 1), 1e-9);
+        assertEquals(0.0, suma.getElemento(1, 0), 1e-9);
+        assertEquals(10.0, suma.getElemento(1, 1), 1e-9);
+    }
+
+    @Test
+    public void sumaEstaticaConNullDevuelveNull() {
+        Matriz a = new Matriz(new double[][] { { 1.0 } });
+        assertNull(Matriz.suma(null, a));
+        assertNull(Matriz.suma(a, null));
+    }
+
+    @Test
+    public void sumaEstaticaConDimensionDiferenteDevuelveNull() {
+        Matriz a = new Matriz(new double[][] { { 1.0, 2.0 } });
+        Matriz b = new Matriz(new double[][] { { 1.0 } });
+        assertNull(Matriz.suma(a, b));
     }
 }
